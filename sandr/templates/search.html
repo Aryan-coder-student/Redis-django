@@ -1,0 +1,24 @@
+{% extends 'index.html' %}
+{% block body %}
+<div class = "container-fluid">
+    <div class = "row">
+        {% for i in x %}
+        <div class = "col-3 py-2 text-center">
+            <div class="card" style="width: 18rem;">
+                <img src="{{i.product_image.url}}" style = "height:210px; width:286px"class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title"><u>{{i.products_name}}</u></h5>
+                    {% if i.dis %}
+                    <p>Discount</p>
+                    {%else%}
+                    <p>MRP</p>
+                    {% endif %}
+                    <a href="/product?search={{i.product_id}}" class="btn btn-primary">View Product</a>
+                    <a href = "{% url 'index' %}" class="btn btn-primary">back</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock body %}

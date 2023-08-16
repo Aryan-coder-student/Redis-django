@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Product search</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  </head>
+  <body>
+      <nav class="navbar bg-body-tertiary">
+          <div class="container-fluid">
+              <a class="navbar-brand">Navbar</a>
+              <form method = 'get' action = "/product"class="d-flex" role="search">
+                  <input class="form-control me-2" type="search" placeholder="Search" name = 'search' aria-label="Search">
+                  <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+        {% block body %}
+        <div class = "container-fluid">
+        <div class = "row">
+            {% for x in products_model %}
+            <div class = "col-3 py-2 text-center">
+                <div class="card" style="width: 18rem;">
+                    <img src="{{x.product_image.url}}" style = "height:210px; width:286px"class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title"><u>{{x.products_name}}</u></h5>
+                        {% if x.dis %}
+                        <p>Discount</p>
+                        {%else%}
+                        <p>MRP</p>
+                        {% endif %}
+                        <a href="/product?search={{x.product_id}}" class="btn btn-primary">View Product</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endblock body %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+  </body>
+</html>
